@@ -1,7 +1,7 @@
 {
   "name": "dependency-injection",
   "scope": "beatthat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides IoC dependency injection. Works on top of beatthat/services which provides the container itself",
   "main": "index.js",
   "scripts": {
@@ -45,8 +45,8 @@
     "readmefiles"
   ],
   "dependencies": {
-    "path": "^0.12.7","comments": "beatthat/comments#semver:^1.0.0",
     "path": "^0.12.7",
+    "comments": "beatthat/comments#semver:^1.0.0",
     "pools": "beatthat/pools#semver:^1.0.0",
     "safe-refs": "beatthat/safe-refs#semver:^1.0.0",
     "services": "beatthat/services#semver:^1.0.0",
