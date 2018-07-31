@@ -22,7 +22,9 @@
       "test-cp2src": "copies changes from 'test' package back to package src but does NOT delete removed files",
       "test-overwrite2src": "copies changes from 'test' package back to src. Deletes src before the copy, so effectively whatever is in test becomes the src",
       "npm version [patch|minor|major]": "after everything commited, use npm version to push a tagged release with bumped version"
-    }
+    },
+    "overwrite2clone": "./node_modules/.bin/overwrite2clone",
+    "docs-generate": "node scripts/docs-generate.js"
   },
   "repository": {
     "type": "git",
@@ -45,11 +47,11 @@
     "readmefiles"
   ],
   "dependencies": {
+    "comments": "github:beatthat/comments#semver:^1.0.0",
     "path": "^0.12.7",
-    "comments": "beatthat/comments#semver:^1.0.0",
-    "pools": "beatthat/pools#semver:^1.0.0",
-    "safe-refs": "beatthat/safe-refs#semver:^1.0.0",
-    "services": "beatthat/services#semver:^1.0.0",
+    "pools": "github:beatthat/pools#semver:^1.0.0",
+    "safe-refs": "github:beatthat/safe-refs#semver:^1.0.0",
+    "services": "github:beatthat/services#semver:^1.0.0",
     "type-utils": "github:beatthat/type-utils#semver:^1.0.0",
     "unity-npm-utils": "github:beatthat/unity-npm-utils#semver:^1.0.0"
   },
