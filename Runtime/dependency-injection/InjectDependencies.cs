@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using BeatThat.Defines;
 using BeatThat.Pools;
 using BeatThat.SafeRefs;
 using BeatThat.Service;
@@ -9,6 +10,10 @@ using UnityEngine;
 
 namespace BeatThat.DependencyInjection
 {
+    [EditDefine(
+        "DEPENDENCY_INJECTION_DISABLE_AUTO_INIT_SERVICES",
+        "By default, dependency injection will call Services.Init if it encounters an [Inject] tag and services are neither init nor init in progress. Define this symbol to disable that behaviour."
+    )]
     public static class InjectDependencies 
 	{
 		public static bool On(object instance)
@@ -142,35 +147,48 @@ namespace BeatThat.DependencyInjection
 			public PropertyInfo[] properties;
 		}
 
-		private static void InjectOnServicesInit(object inst)
-		{
+        private static void InjectOnServicesInit(object inst)
+        {
             var eventHandler = inst as DependencyInjectionEventHandler;
-            if(eventHandler != null) {
+            if (eventHandler != null)
+            {
                 eventHandler.OnDependencyInjectionWaitingForServicesReady();
             }
 
-			if (m_injectOnServicesInit == null) {
-				m_injectOnServicesInit = ListPool<SafeRef<object>>.Get ();
+            if (m_injectOnServicesInit == null)
+            {
+                m_injectOnServicesInit = ListPool<SafeRef<object>>.Get();
 
-				Services.InitStatusUpdated.AddListener ((s) => {
-					if (!s.hasInit) {
-						return;
-					}
+                Services.InitStatusUpdated.AddListener((s) =>
+                {
+                    if (!s.hasInit)
+                    {
+                        return;
+                    }
 
-					foreach(var o in m_injectOnServicesInit) {
-						if(o.value == null) {
-							continue;
-						}
-						On(o.value);
-					}
+                    foreach (var o in m_injectOnServicesInit)
+                    {
+                        if (o.value == null)
+                        {
+                            continue;
+                        }
+                        On(o.value);
+                    }
 
-					m_injectOnServicesInit.Dispose();
-					m_injectOnServicesInit = null;
-				});
-			}
+                    m_injectOnServicesInit.Dispose();
+                    m_injectOnServicesInit = null;
+                });
+            }
 
-			m_injectOnServicesInit.Add (new SafeRef<object>(inst));
-		}
+            m_injectOnServicesInit.Add(new SafeRef<object>(inst));
+
+#if !DEPENDENCY_INJECTION_DISABLE_AUTO_INIT_SERVICES
+            if (!Services.exists || !Services.Get.isInitInProgress)
+            {
+                Services.Init();
+            }
+#endif
+        }
 
 		private static ListPoolList<SafeRef<object>> m_injectOnServicesInit;
 		private static Dictionary<Type, TypeInjections> m_typeInjectionFieldsByType = new Dictionary<Type, TypeInjections> ();

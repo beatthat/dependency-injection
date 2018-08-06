@@ -48,6 +48,7 @@
   ],
   "dependencies": {
     "comments": "github:beatthat/comments#semver:^1.0.0",
+    "defines": "github:beatthat/defines#semver:^1.0.0",
     "path": "^0.12.7",
     "pools": "github:beatthat/pools#semver:^1.0.0",
     "safe-refs": "github:beatthat/safe-refs#semver:^1.0.0",
