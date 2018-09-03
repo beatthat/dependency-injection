@@ -5,10 +5,8 @@ Provides IoC dependency injection. Works on top of beatthat/services which provi
 
 From your unity project folder:
 
-    npm init
-    npm install TEMPLATE --save
-    echo Assets/packages >> .gitignore
-    echo Assets/packages.meta >> .gitignore
+    npm init --force # only if you don't yet have a package.json file
+    npm install --save beatthat/dependency-injection
 
 The package and all its dependencies will be installed under Assets/Plugins/packages.
 
