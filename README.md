@@ -46,7 +46,7 @@ using BeatThat.Services;
 using BeatThat.DependencyInjection;
 [RegisterService]public class Foo{}
 
-public class UsesInjection_Manual
+public class UsesInjection_Manual : MonoBehaviour
 {
     [Inject]Foo myFoo; // will be set by injection
 
