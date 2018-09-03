@@ -43,6 +43,7 @@ Dependency injection is a cleaner way to use services. It has a smaller code foo
 
 ```c#
 using BeatThat.Services;
+using BeatThat.DependencyInjection;
 [RegisterService]public class Foo{}
 
 public class UsesInjection_Manual
@@ -53,7 +54,7 @@ public class UsesInjection_Manual
     {
         // Something needs to call DependencyInjection.InjectDependencies.
         // One option is to call it in Start...
-        DependencyInjection.InjectDependencies(this);
+        InjectDependencies.On(this);
     }
 }
 ```
@@ -62,6 +63,7 @@ public class UsesInjection_Manual
 
 ```c#
 using BeatThat.Services;
+using BeatThat.DependencyInjection;
 [RegisterService]public class Foo{}
 
 public class UsesInjection_WithBaseClass : DependencyInjectedBehaviour
@@ -80,6 +82,7 @@ The [RegisterService] attribute provides a couple of features to make it easier 
 
 ```c#
 using BeatThat.Services;
+using BeatThat.DependencyInjection;
 public interface Bar {}
 
 [RegisterService]public class Foo : Bar {}
@@ -94,6 +97,7 @@ public class UsesBar : DependencyInjectedBehaviour
 
 ```c#
 using BeatThat.Services;
+using BeatThat.DependencyInjection;
 public interface Bar {}
 
 public class FooBase : Bar {}
@@ -114,6 +118,7 @@ public class UsesBar : DependencyInjectedBehaviour
 ###### Use 'interfaceRegistrationPolicy' to just register all interfaces
 ```c#
 using BeatThat.Services;
+using BeatThat.DependencyInjection;
 public interface Bar {}
 
 public class FooBase : Bar {}
