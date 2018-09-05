@@ -1,5 +1,5 @@
-(#readme)
-# dependency-injection
+
+[dependency-injection](#readme)
 Provides IoC dependency injection. Works on top of beatthat/services which provides the container itself
 
 ## Install
