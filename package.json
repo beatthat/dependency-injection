@@ -1,7 +1,7 @@
 {
   "name": "dependency-injection",
   "scope": "beatthat",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Provides IoC dependency injection. Works on top of beatthat/services which provides the container itself",
   "main": "index.js",
   "scripts": {
